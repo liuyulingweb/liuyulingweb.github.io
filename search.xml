@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>axios+node请求解决session的问题</title>
+      <link href="/2019/04/12/axios_session/"/>
+      <url>/2019/04/12/axios_session/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>  当前后端分离利用axios请求后端存储的session时，会在页面导航丢失session值。解决办法如下：</p></blockquote><ol><li><p>教程地址：<a href="https://www.jb51.net/article/118555.htm" target="_blank" rel="noopener">https://www.jb51.net/article/118555.htm</a></p></li><li><p>后端跨域请求中需要设置（红色感叹号的两句）：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 处理跨域方法 jsonp  CROS 处理方式</span></span><br><span class="line">app.all(<span class="string">'*'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">    res.header(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="string">"true"</span>);❗️</span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://127.0.0.1:5500"</span>);❗️</span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"X-Requested-With,Content-Type"</span>);</span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Methods"</span>, <span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);</span><br><span class="line">    res.header(<span class="string">"X-Powered-By"</span>, <span class="string">' 3.2.1'</span>);</span><br><span class="line">    next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li><li><p>vsc编辑器安装内置服务</p><p>在编辑器器中安装插件<code>Live Serve</code>。</p></li><li><p>在axios请求数据时添加（红色❗️部分）</p> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">     axios.get(<span class="string">"http://localhost:3000/vue/username"</span>, &#123;</span><br><span class="line">         withCredentials: <span class="literal">true</span> <span class="comment">//打开cookie❗️</span></span><br><span class="line">     &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">         <span class="keyword">const</span> username = res.data;</span><br><span class="line">         <span class="built_in">console</span>.log(username);</span><br><span class="line">         <span class="keyword">if</span> (username) &#123;</span><br><span class="line">             <span class="keyword">this</span>.username = res.data;</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">             <span class="built_in">window</span>.location.href = <span class="string">"http://127.0.0.1:5500/src/html/14_登录注册.html"</span>;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>打开网页时注意用vsc的服务器打开，不要用本地文件夹路径打开。</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> axios </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
