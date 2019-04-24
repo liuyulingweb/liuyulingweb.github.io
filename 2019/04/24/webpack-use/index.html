@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="记录学习前端知识，比如：React、Vue、以及 JavaScript等前端技术。"><title>webpack 使用 | 搬砖的艺术</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/rss/atom.xml"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = 'https://hm.baidu.com/hm.js?' + '5dea22e4cc9737ea29a95c7534a9ba57';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">webpack 使用</h1><a id="logo" href="/.">搬砖的艺术</a><p class="description">新的一天从凌晨开始...</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/rss/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">webpack 使用</h1><div class="post-meta">Apr 24, 2019<span> | </span><span class="category"><a href="/categories/前端技术/">前端技术</a></span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 1k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-hourglass-half"></i><span class="post-count"> 4</span><span class="post-meta-item-text"> 分钟</span></span></span></div><div class="post-content"><blockquote>
+<p>  <a href="http://webpack.github.io/" target="_blank" rel="noopener">webpack</a>是近期最火的一款模块加载器兼打包工具，它能把各种资源，例如JS（含JSX  javascript xml）、coffee、样式（含less/sass）、图片等都作为模块来使用和处理。</p>
+<p>  文档地址：<a href="http://webpack.github.io/docs/" target="_blank" rel="noopener">http://webpack.github.io/docs/</a></p>
+<p>  使用<strong>loader</strong>转换文件</p>
+</blockquote>
+<p><strong>记住三点，入口(entry)，出口(output)，规则(loader)</strong></p>
+<p>规则就是用相应的loader模块打包相应的文件。</p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ol>
+<li><p>webpack 是以 commonJS 的形式来书写脚本的，但对 AMD/CMD 的支持也很全面，方便旧项目进行代码迁移。</p>
+<blockquote>
+<p>  <strong>AMD</strong>[Asynchromous Module Definition]:RequireJS 在推广过程中对模块定义的规范化产出。</p>
+<p>  <strong>CMD</strong>[Common Module defined]:SeaJS 在推广过程中对模块定义的规范化产出。</p>
+<p>  <strong>CommonJS规范</strong></p>
+<p>  作用：让js不仅可以运行在浏览器端，还可以运行在服务器端。</p>
+<p>  <strong>CommonJS定义的模块分为:</strong></p>
+<p>  {模块引用(require)} -&gt;require()用来引入外部模块</p>
+<p>  {模块导出(exports)}-&gt;exports对象用于导出当前模块的方法或变量，唯一的导出口</p>
+<p>  {模块标识(module)} defined -&gt;module对象就代表模块本身</p>
+</blockquote>
+</li>
+<li><p>能被模块化的不仅仅是 JS 了。png  coffee  less&amp;sass</p>
+</li>
+<li><p>开发便捷，能替代部分 grunt/gulp 的工作，比如打包、压缩混淆、图片转base64等。</p>
+</li>
+<li><p>扩展性强，插件机制完善，特别是支持 React 热插拔（见 react-hot-loader ）的功能让人眼前一亮</p>
+</li>
+</ol>
+<h4 id="安装及使用"><a href="#安装及使用" class="headerlink" title="安装及使用"></a>安装及使用</h4><ul>
+<li><p>安装</p>
+<ol>
+<li><code>mkdir course-webpack</code>(不要大写P)</li>
+<li><code>cd course-webpack</code></li>
+<li><code>npm init</code></li>
+<li>全局安装<code>cnpm i webpack@3.8.1 -g</code>  (3.8.1版本的稳定)</li>
+<li>开发依赖<code>cnpm i webpack@3.8.1 -D</code></li>
+<li>安装css项目打包</li>
+</ol>
+</li>
+<li><p>使用</p>
+<ol>
+<li><p><code>cnpm i css-loader style-loader -D</code>安装支持css的打包坏境</p>
+<p><code>require(&#39;style!css!./style.css&#39;)</code>style与css的位置不能变</p>
+</li>
+<li><p><code>cnpm i sass-loader node-sass -D</code></p>
+<p>文件名后缀为<code>.scss</code></p>
+</li>
+<li><p><code>cnpm i less less-loader -D</code></p>
+<p>文件名后缀为<code>.less</code></p>
+</li>
+<li><p>最后使用命令<code>webpack ***.*** bundle.js</code>将把暴露出来的各种文件打包到bundle.js里</p>
+<p><code>bundle： 捆; 包袱; 捆绑</code>w</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
+<li><p>新建<code>webpack.config.js</code>文件（webpack配置文件）。写入：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack 配置文件</span></span><br><span class="line"><span class="comment">// 入口 entry</span></span><br><span class="line"><span class="comment">// 出口  output</span></span><br><span class="line"><span class="comment">// 规则  loader   module</span></span><br><span class="line"><span class="comment">// 插件  plugins</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// js css/scss/less  png vue</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">"./entry.js"</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">"bundle.js"</span>,</span><br><span class="line">    path: __dirname <span class="comment">//双下划线</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [&#123;</span><br><span class="line">      test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">      use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>]</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      test: <span class="regexp">/\.scss$/</span>,</span><br><span class="line">      use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>, <span class="string">'sass-loader'</span>]</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      test: <span class="regexp">/\.less$/</span>,</span><br><span class="line">      use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>, <span class="string">'less-loader'</span>]</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">      exclude: <span class="regexp">/node_modules/</span>, <span class="comment">// 不会去 node_modules 搜索 打包文件</span></span><br><span class="line">      use: [</span><br><span class="line">        <span class="string">"babel-loader"</span></span><br><span class="line">      ]</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">"source-map"</span>, <span class="comment">// 方便开发者调试</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置规则(js可能需要配置es6，有的浏览器不识别es6语法)</p>
+<ol>
+<li><p><code>cnpm i babel-loader@7.1.5 babel-core@6.26.3 babel-preset-env -D</code></p>
+</li>
+<li><p>新建<code>.babelrc</code> 填写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"presets"</span>:[<span class="string">"env"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置规则在<code>webpack.config.js</code>写入<code>.js</code>的配置规则（上面已写）</p>
+</li>
+</ol>
+</li>
+<li><p>热替换</p>
+<ol>
+<li><code>cnpm i webpack-dev-server@2.9.3 -g</code></li>
+<li><code>cnpm i webpack-dev-server@2.9.3 -D</code></li>
+<li>在packjson中添加<code>&quot;start&quot;:&quot;webpack-dev-server --inline --hot --open&quot;</code></li>
+</ol>
+</li>
+<li><p>下载<code>source-map</code></p>
+<p>下载后配置 <code>devtool: &quot;source-map&quot;, // 方便开发者调试</code></p>
+</li>
+</ol>
+<h3 id="webpack内各种文件的书写"><a href="#webpack内各种文件的书写" class="headerlink" title="webpack内各种文件的书写"></a>webpack内各种文件的书写</h3><ol>
+<li><p><code>.css</code>文件</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: darkgreen;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">border</span>:<span class="number">4px</span> solid darkorange;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">60px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>.scss</code></p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$base_color</span>:yellow;</span><br><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="variable">$base_color</span>;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">    <span class="selector-tag">div</span>&#123;</span><br><span class="line">        <span class="attribute">border</span>:<span class="number">4px</span> solid darkorange;</span><br><span class="line">        <span class="attribute">font-size</span>:<span class="number">60px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>.less</code></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@base_color:</span>yellowgreen;</span><br><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="variable">@base_color</span>;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#fff</span>;</span><br><span class="line">    <span class="selector-tag">div</span>&#123;</span><br><span class="line">        <span class="attribute">border</span>:<span class="number">4px</span> solid darkorange;</span><br><span class="line">        <span class="attribute">font-size</span>:<span class="number">60px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>.js</code>（下面包含部分es6)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">"vue"</span>,<span class="string">"react"</span>,<span class="string">"angular4.0"</span>];</span><br><span class="line"><span class="keyword">let</span> word = <span class="string">"天道酬勤!!!"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 解构导出</span></span><br><span class="line">exports.arr = arr;</span><br><span class="line"></span><br><span class="line">exports.word = word;</span><br><span class="line"></span><br><span class="line"><span class="comment">// module.exports = "hello everyone";</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// js文件 无需打包  本身就是模块</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 模块导出</span></span><br><span class="line"><span class="comment">// module.exports = &#123;&#125;</span></span><br><span class="line"><span class="comment">// exports.a = a;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>入口文件<code>entry.js</code>(需新建)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"这是 入口文件 ..."</span>);</span><br><span class="line"><span class="comment">//  ./ 表示同级文件  ../  上一级文件  __dirname</span></span><br><span class="line"><span class="comment">// var &#123;arr,word&#125; = require("./name");</span></span><br><span class="line"><span class="keyword">import</span> &#123;arr,word&#125; <span class="keyword">from</span> <span class="string">"./name"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// import obj from "./es6";</span></span><br><span class="line"><span class="comment">// console.log(obj);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123;msg,hello&#125; <span class="keyword">from</span> <span class="string">"./es6"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"app"</span>).innerHTML += <span class="string">"hello - webpack"</span>  +  word  + arr[<span class="number">0</span>] + <span class="string">"&lt;h2&gt;"</span>+msg+<span class="string">"&lt;/h2&gt;"</span> + hello;</span><br><span class="line"></span><br><span class="line"><span class="comment">// require("style-loader!css-loader!./style.css");</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// require("style-loader!css-loader!sass-loader!./demo.scss");</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// require("style-loader!css-loader!less-loader!./index.less");</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// require("./style.css");</span></span><br><span class="line"><span class="comment">// require("./demo.scss");</span></span><br><span class="line"><span class="comment">// require("./index.less");</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"./demo.scss"</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>出口文件webpack编译后<code>bundle.js</code>（需新建）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"这是 入口文件 ..."</span>);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>index.html</code>文件引入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</div><div class="tags"><a href="/tags/webpack/">webpack</a></div><div class="post-nav"><a class="pre" href="/2019/04/24/vue-build/">vue 构建步骤</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端技术/">前端技术</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/24/vue-build/">vue 构建步骤</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/24/webpack-use/">webpack 使用</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">搬砖的艺术.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
